@@ -20,14 +20,13 @@ class CharacterGrid
 		char** grid;
 		int dimension;
 		int row, col;
-		ifstream datafile;
-		
+				
 	
 	//member functions
 	public:
 		CharacterGrid();
 		~CharacterGrid();
-		char nextChar(string);
+		void getData(string);
 		void populateGrid();
 		void displayGrid();
 };

@@ -1,4 +1,7 @@
 #include "CharacterGrid.h"
+#include <vector>
+
+using namespace std;
 
 
 //constructor
@@ -19,31 +22,21 @@ CharacterGrid::~CharacterGrid(){
 };
 
 //reads data file character by character
-char CharacterGrid::nextChar(string filename){
+void CharacterGrid::getData(string filename){
 	
-	char next_char;
-	datafile.open(filename, ios::in);
 
-	while(!datafile.eof()){
-
-		if(!(next_char == ',' || next_char == '\n')){
-			/* code */
-		}
-	}
-datafile.get(next_char);
 };
 
 //method to fill grid with characters from user specified file
-void CharacterGrid::populateGrid(){		
+void CharacterGrid::populateGrid(){	
 
 	for(row = 0 ; row < dimension ; row++){
 
 		for(col = 0 ; col < dimension ; col++){
 
-			grid[row][col] = nextChar(); ;
+			grid[row][col] = '@';
 		}
-	}
-	
+	}	
 };
 
 //method to print the grid of characters to screen
@@ -62,7 +55,8 @@ void CharacterGrid::displayGrid(){
 
 
 int main()
-{
+{		
+
 	CharacterGrid my_grid;
 	my_grid.populateGrid();
 	my_grid.displayGrid();
