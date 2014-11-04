@@ -20,25 +20,44 @@ CharacterGrid::~CharacterGrid(){
 	}
 };
 
-//reads data file character by character
-void CharacterGrid::getData(){
+//reads data as a string
+string CharacterGrid::getData(){
 	char ch;
+
+	string data = "" ;	
 	ifstream datafile;
 	datafile.open("data.txt", ios::in);
-	while (datafile >> skipws >> ch) {
-    	cout << ch << endl;
+
+	if (datafile.is_open()){
+		while(datafile){
+			ch = datafile.get();
+			if ( ch != ',' && !datafile.eof()){
+				data += ch;				
+			}			
+		}
+		datafile.close();
+	}else{
+		cerr << "\nERROR: File could not be opened!\n";
 	}
-	datafile.close();	
+	cout << data << "\n\n" << data.size() <<  endl;
+	return data;
 };
 
 //method to fill grid with characters from user specified file
 void CharacterGrid::populateGrid(){	
 
+	string data = getData();
+	int count = 0;
+
 	for(row = 0 ; row < dimension ; row++){
 
 		for(col = 0 ; col < dimension ; col++){
 
-			grid[row][col] = '@';
+			if(count <= data.size()){
+				grid[row][col] = data[count];
+				count++;
+			}
+
 		}
 	}	
 };
@@ -62,9 +81,8 @@ int main()
 {		
 
 	CharacterGrid my_grid;
-	//my_grid.populateGrid();
+	my_grid.populateGrid();
 	//my_grid.displayGrid();
-	my_grid.getData();
-		
+	
 	return 0;
 }
