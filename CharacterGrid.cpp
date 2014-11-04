@@ -1,5 +1,4 @@
 #include "CharacterGrid.h"
-#include <vector>
 
 using namespace std;
 
@@ -22,9 +21,14 @@ CharacterGrid::~CharacterGrid(){
 };
 
 //reads data file character by character
-void CharacterGrid::getData(string filename){
-	
-
+void CharacterGrid::getData(){
+	char ch;
+	ifstream datafile;
+	datafile.open("data.txt", ios::in);
+	while (datafile >> skipws >> ch) {
+    	cout << ch << endl;
+	}
+	datafile.close();	
 };
 
 //method to fill grid with characters from user specified file
@@ -58,8 +62,9 @@ int main()
 {		
 
 	CharacterGrid my_grid;
-	my_grid.populateGrid();
-	my_grid.displayGrid();
+	//my_grid.populateGrid();
+	//my_grid.displayGrid();
+	my_grid.getData();
 		
 	return 0;
 }
