@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -27,6 +28,6 @@ class CharacterGrid
 		CharacterGrid();
 		~CharacterGrid();
 		string getData(); 
-		void populateGrid();
+		void populateGrid(string);
 		void displayGrid();
 };
