@@ -1,7 +1,4 @@
 #include "CharacterGrid.h"
-#include <fstream>
-#include <iostream>
-#include <string> 
 
 using namespace std;
 
@@ -23,41 +20,31 @@ CharacterGrid::~CharacterGrid(){
 	}
 };
 
-/*//reads data as a string
-string CharacterGrid::getData(){
-	char ch;
-
-	string data = "" ;	
-	ifstream datafile;
-	datafile.open("data.txt", ios::in);
-
-	if (datafile.is_open()){
-		while(datafile){
-			ch = datafile.get();
-			data += ch;						
-		}
-		datafile.close();
-	}else{
-		cerr << "\nERROR: File could not be opened!\n";
-	}
-	cout << data << "\n\n" << data.size() <<  endl;
-	return data;
-};*/
-
 //method to fill grid with characters from user specified file
 void CharacterGrid::populateGrid(string filename){	
 
 	ifstream datafile;
 	datafile.open(filename.c_str());
-	const int pos_array[] = {0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58};
 	if (datafile.is_open()){
 
-		string line;
+		string raw_line;
+		char ch;
 		for(row = 0 ; row < dimension ; row++){
-			getline(datafile, line);
-						
+			//read a single line from data file
+			getline(datafile, raw_line);
+			string delim_line = "";
+
+			//remove all commas from line
+			for (int i = 0; i < raw_line.size() ; i++){
+				ch = raw_line[i];
+				if (ch != ','){
+					delim_line += ch;
+				}
+			}
+								
 			for(col = 0 ; col < dimension ; col++){
-				grid[row][col] = line[pos_array[col]];														
+				//fill columns with characters from line 
+				grid[row][col] = delim_line[col];														
 			}
 		}		
 	}else{
@@ -65,6 +52,7 @@ void CharacterGrid::populateGrid(string filename){
 	}	
 	datafile.close();	
 };
+
 
 //method to print the grid of characters to screen
 void CharacterGrid::displayGrid(){

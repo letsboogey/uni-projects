@@ -27,7 +27,6 @@ class CharacterGrid
 	public:
 		CharacterGrid();
 		~CharacterGrid();
-		string getData(); 
 		void populateGrid(string);
 		void displayGrid();
 };
