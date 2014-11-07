@@ -11,18 +11,17 @@
 
  #include <iostream>
  #include <string>
- #include "CharacterGrid.h"
 
  using namespace std;
 
- class TokenSearch
- {
+ class tokenSearch{
  	private:
- 		char the_token;
- 		char** the_grid;
+ 		char token;
+ 		int row, col, dimension;
+ 		int next_row, prev_row, next_col, prev_col;
 
 	public:
-		TokenSearch();
-		search(string);
+		tokenSearch(char);
+		void search(char**);
  	
  };

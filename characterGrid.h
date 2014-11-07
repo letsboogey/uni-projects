@@ -14,19 +14,18 @@
 
 using namespace std;
 
-class CharacterGrid
-{
+class characterGrid{
+
 	//data members
 	private:
 		char** grid;
-		int dimension;
-		int row, col;
+		int row, col, dimension;
 				
 	
 	//member functions
 	public:
-		CharacterGrid();
-		~CharacterGrid();
-		void populateGrid(string);
+		characterGrid();
+		~characterGrid();
+		char** populateGrid(string);
 		void displayGrid();
 };

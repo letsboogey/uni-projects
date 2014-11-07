@@ -1,10 +1,10 @@
-#include "CharacterGrid.h"
+#include "characterGrid.h"
 
 using namespace std;
 
 
 //constructor
-CharacterGrid::CharacterGrid(){
+characterGrid::characterGrid(){
 	dimension = 30;
 
 	grid = new char*[dimension];
@@ -14,14 +14,14 @@ CharacterGrid::CharacterGrid(){
 };
 
 //destructor
-CharacterGrid::~CharacterGrid(){
+characterGrid::~characterGrid(){
 	for(int i = 0 ; i < dimension ; i++ ){
 		delete[] grid[i];
 	}
 };
 
 //method to fill grid with characters from user specified file
-void CharacterGrid::populateGrid(string filename){	
+char** characterGrid::populateGrid(string filename){	
 
 	ifstream datafile;
 	datafile.open(filename.c_str());
@@ -50,12 +50,13 @@ void CharacterGrid::populateGrid(string filename){
 	}else{
 		cerr << "\nERROR: File could not be opened!\n";
 	}	
-	datafile.close();	
+	datafile.close();
+	return grid;	
 };
 
 
 //method to print the grid of characters to screen
-void CharacterGrid::displayGrid(){
+void characterGrid::displayGrid(){
 
  	for(row = 0 ; row < dimension ; row++){
 
@@ -69,12 +70,3 @@ void CharacterGrid::displayGrid(){
 
 
 
-int main()
-{		
-
-	CharacterGrid my_grid;
-	my_grid.populateGrid("data.txt");
-	my_grid.displayGrid();
-	
-	return 0;
-}
