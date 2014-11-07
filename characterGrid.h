@@ -18,14 +18,13 @@ class characterGrid{
 
 	//data members
 	private:
-		char** grid;
-		int row, col, dimension;
-				
+		unsigned char** grid;
+		int row, col, dimension;				
 	
 	//member functions
 	public:
 		characterGrid();
 		~characterGrid();
-		char** populateGrid(string);
+		unsigned char** populateGrid(string);
 		void displayGrid();
 };

@@ -1,3 +1,10 @@
+/*
+ *author: Letsibogo Ramadi
+ *date: 05-11-14
+ *Description: implementation of the characterGrid class.
+ *
+ */
+
 #include "characterGrid.h"
 
 using namespace std;
@@ -7,9 +14,9 @@ using namespace std;
 characterGrid::characterGrid(){
 	dimension = 30;
 
-	grid = new char*[dimension];
+	grid = new unsigned char*[dimension];
 	for(int i = 0 ; i < dimension ; i++ ){
-		grid[i] = new char[dimension];
+		grid[i] = new unsigned char[dimension];
 	}
 };
 
@@ -20,15 +27,19 @@ characterGrid::~characterGrid(){
 	}
 };
 
+
 //method to fill grid with characters from user specified file
-char** characterGrid::populateGrid(string filename){	
+unsigned char** characterGrid::populateGrid(string filename){	
 
 	ifstream datafile;
 	datafile.open(filename.c_str());
+
 	if (datafile.is_open()){
 
+		cout << "\n\nGrid of characters from '" << filename << "' \n" << endl;
+
 		string raw_line;
-		char ch;
+		unsigned char ch;
 		for(row = 0 ; row < dimension ; row++){
 			//read a single line from data file
 			getline(datafile, raw_line);
@@ -46,10 +57,13 @@ char** characterGrid::populateGrid(string filename){
 				//fill columns with characters from line 
 				grid[row][col] = delim_line[col];														
 			}
-		}		
+		}
+
 	}else{
-		cerr << "\nERROR: File could not be opened!\n";
+		cerr << "\nERROR: File could not be opened!\n";		
+		return(0);
 	}	
+	
 	datafile.close();
 	return grid;	
 };

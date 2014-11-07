@@ -1,7 +1,7 @@
 /*
  *author: Letsibogo Ramadi
  *date: 03-11-14
- *Description: header file to define the TokenSearch class.
+ *Description: header file to define the tokenSearch class.
  *				This class traverses a 30 x 30 size grid and 
  *				searches for any tokens specified by a user.  
  *				A token in this context would be a given character
@@ -15,13 +15,16 @@
  using namespace std;
 
  class tokenSearch{
+
+ 	//data members
  	private:
- 		char token;
- 		int row, col, dimension;
+ 		unsigned char token;
+ 		int row, col, dimension, hits;
  		int next_row, prev_row, next_col, prev_col;
 
+ 	//member functions
 	public:
-		tokenSearch(char);
-		void search(char**);
+		tokenSearch(unsigned char);
+		void search(unsigned char**);
  	
  };
